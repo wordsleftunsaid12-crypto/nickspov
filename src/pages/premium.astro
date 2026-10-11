@@ -1,0 +1,168 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Premium - Nick's POV">
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow reveal">Full content</p>
+      <h1 class="reveal">Premium</h1>
+      <p class="reveal">Complete videos, custom requests, and exclusive content.</p>
+    </div>
+  </section>
+
+  <section class="promo">
+    <div class="container">
+      <div class="promo-player reveal">
+        <video controls muted autoplay loop playsinline preload="auto" poster="/videos/promo.jpg" src="/videos/promo.mp4"></video>
+      </div>
+    </div>
+  </section>
+
+  <section class="options">
+    <div class="container">
+      <div class="options-grid">
+        <div class="option-card reveal" data-tilt>
+          <h2>ManyVids store</h2>
+          <p>Full-length videos, custom requests, and bundles.</p>
+          <ul>
+            <li>Complete uncut videos</li>
+            <li>Custom video requests</li>
+            <li>Bundle discounts</li>
+            <li>Direct messaging</li>
+          </ul>
+          <a href="https://nickspov.manyvids.com" class="btn btn-primary" target="_blank" rel="noopener">Visit store</a>
+        </div>
+
+        <div class="option-card reveal" data-tilt>
+          <h2>Subscription</h2>
+          <p>Monthly exclusive content delivered to your inbox.</p>
+          <ul>
+            <li>4 exclusive videos/month</li>
+            <li>Behind-the-scenes access</li>
+            <li>Early access to new releases</li>
+            <li>Priority for custom requests</li>
+          </ul>
+          <span class="btn btn-secondary" aria-disabled="true">Launching soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<!-- scroll reveals handled by Dynamics in Base layout -->
+
+<style>
+  .page-header {
+    text-align: center;
+    padding: 64px 0 32px;
+  }
+
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .page-header p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+  }
+
+  .promo {
+    padding-bottom: 8px;
+  }
+
+  .promo-player {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .promo-player video {
+    width: 100%;
+    display: block;
+    background: #000;
+    aspect-ratio: 16 / 9;
+  }
+
+  .options {
+    padding-bottom: 64px;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .option-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .option-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(233, 30, 99, 0.1);
+  }
+
+  .option-card h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .option-card > p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+  }
+
+  .option-card ul {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+
+  .option-card li {
+    padding: 6px 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .option-card li::before {
+    content: "→ ";
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 48px 0 24px;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .options-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

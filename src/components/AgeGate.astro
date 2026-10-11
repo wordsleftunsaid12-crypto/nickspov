@@ -1,0 +1,75 @@
+---
+---
+
+<div id="age-gate" class="age-gate">
+  <div class="age-gate-content">
+    <img src="/favicon.png" alt="Nick's POV" class="age-logo" />
+    <h1>Enter if you're 18+</h1>
+    <p>This site contains adult content. By entering, you confirm you are of legal age in your jurisdiction.</p>
+    <div class="age-gate-buttons">
+      <button id="age-yes" class="btn btn-primary">I am 18 or older</button>
+      <a href="https://www.google.com" class="btn btn-secondary">Exit</a>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const gate = document.getElementById('age-gate');
+  const yesBtn = document.getElementById('age-yes');
+
+  if (localStorage.getItem('age-verified') === 'true') {
+    gate.style.display = 'none';
+  }
+
+  yesBtn.addEventListener('click', () => {
+    localStorage.setItem('age-verified', 'true');
+    gate.style.display = 'none';
+  });
+</script>
+
+<style>
+  .age-gate {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.97);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 24px;
+  }
+
+  .age-gate-content {
+    text-align: center;
+    max-width: 420px;
+  }
+
+  .age-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 24px;
+    border-radius: var(--radius-md);
+  }
+
+  .age-gate-content h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .age-gate-content p {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .age-gate-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

@@ -1,0 +1,349 @@
+---
+import Base from '../layouts/Base.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import FilmReel from '../components/FilmReel.astro';
+---
+
+<Base title="Nick's POV - Home">
+  <section class="hero">
+    <div class="hero-reel">
+      <FilmReel ambient />
+    </div>
+    <div class="hero-glow"></div>
+    <div class="container hero-content">
+      <p class="eyebrow">First-person. Real. Exclusive.</p>
+      <h1>Step into<br /><span class="accent">Nick's world.</span></h1>
+      <p class="tagline">Immersive POV experiences filmed from a genuine first-person perspective. Raw, personal, and exclusively yours.</p>
+      <div class="hero-buttons">
+        <a href="https://nickspov.manyvids.com" class="btn btn-primary" target="_blank" rel="noopener" data-magnetic>Get the full videos</a>
+        <a href="#latest" class="btn btn-secondary" data-magnetic>Watch free teasers</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured" id="latest">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Latest releases</h2>
+      </div>
+      <div class="video-grid">
+        <div class="video-card reveal" data-tilt>
+          <div class="video-thumbnail">
+            <video controls muted autoplay loop playsinline preload="auto" poster="/videos/teaser-1.jpg" src="/videos/teaser-1.mp4"></video>
+          </div>
+          <div class="video-info">
+            <h3>Dawn</h3>
+            <p>0:15 • Free preview</p>
+          </div>
+        </div>
+        <div class="video-card reveal" data-tilt>
+          <div class="video-thumbnail">
+            <video controls muted autoplay loop playsinline preload="auto" poster="/videos/teaser-2.jpg" src="/videos/teaser-2.mp4"></video>
+          </div>
+          <div class="video-info">
+            <h3>Sasha</h3>
+            <p>0:15 • Free preview</p>
+          </div>
+        </div>
+        <div class="video-card reveal" data-tilt>
+          <div class="video-thumbnail">
+            <video controls muted autoplay loop playsinline preload="auto" poster="/videos/teaser-3.jpg" src="/videos/teaser-3.mp4"></video>
+          </div>
+          <div class="video-info">
+            <h3>Minnie</h3>
+            <p>0:15 • Free preview</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="store-banner reveal">
+    <div class="container store-panel">
+      <h2>Want the full videos?</h2>
+      <p>Uncut scenes, customs, and exclusives. Only on the ManyVids store.</p>
+      <a href="https://nickspov.manyvids.com" class="btn btn-primary" target="_blank" rel="noopener" data-magnetic>Visit the store</a>
+    </div>
+  </section>
+
+  <section class="about-teaser">
+    <div class="container reveal">
+      <h2>What is Nick's POV?</h2>
+      <p>Every video is shot from a first-person perspective, putting you directly in the moment. No scripts, no acting, just real experiences captured as they happen. Premium full-length videos available now on ManyVids.</p>
+      <a href="/premium" class="btn btn-secondary" data-magnetic>Explore premium</a>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container reveal">
+      <h2>Get early access</h2>
+      <p>Subscribe for exclusive updates, behind-the-scenes content, and special offers.</p>
+      <EmailCapture />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 80px 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-reel {
+    position: absolute;
+    top: 50%;
+    left: -5%;
+    right: -5%;
+    transform: translateY(-50%) rotate(-2deg);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(233, 30, 99, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+  }
+
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInUp 0.9s ease forwards;
+  }
+
+  .hero h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin-bottom: 24px;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.9s ease 0.15s forwards;
+  }
+
+  .hero h1 .accent {
+    color: var(--accent);
+  }
+
+  .tagline {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeInUp 0.9s ease 0.3s forwards;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.9s ease 0.45s forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .featured {
+    padding: 48px 0;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .section-link {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .video-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+  }
+
+  .video-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 12px 40px rgba(233, 30, 99, 0.1);
+  }
+
+  .video-thumbnail {
+    aspect-ratio: 16/9;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-thumbnail video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000;
+  }
+
+  .video-thumbnail::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.35), transparent 50%);
+    pointer-events: none;
+  }
+
+  .video-info {
+    padding: 20px;
+  }
+
+  .video-info h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .video-info p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .store-banner {
+    padding: 24px 0;
+  }
+
+  .store-panel {
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.12), rgba(233, 30, 99, 0.04));
+    border: 1px solid rgba(233, 30, 99, 0.35);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    padding: 48px 24px;
+  }
+
+  .store-panel h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .store-panel p {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-size: 1.05rem;
+  }
+
+  .about-teaser {
+    padding: 48px 0;
+    text-align: center;
+  }
+
+  .about-teaser h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  .about-teaser p {
+    color: var(--text-secondary);
+    max-width: 640px;
+    margin: 0 auto 28px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .cta {
+    text-align: center;
+    padding: 64px 0 80px;
+  }
+
+  .cta h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .cta p {
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 60px 0 32px;
+    }
+
+    .hero h1 {
+      font-size: 2.75rem;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      margin-bottom: 32px;
+    }
+
+    .video-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-header h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

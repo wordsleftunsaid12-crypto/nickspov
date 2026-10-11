@@ -1,0 +1,289 @@
+---
+import '../styles/global.css';
+import AgeGate from '../components/AgeGate.astro';
+import Dynamics from '../components/Dynamics.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Nick\'s POV - Immersive first-person adult content' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+  </head>
+  <body>
+    <AgeGate />
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a href="/" class="logo">
+          <img src="/logo.png" alt="Nick's POV" class="logo-img" />
+        </a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links">
+          <a href="/premium">Premium</a>
+          <a href="/models">Become a model</a>
+          <a href="https://nickspov.manyvids.com" class="btn btn-primary nav-cta" target="_blank" rel="noopener">Full videos</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <slot />
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <img src="/logo.png" alt="Nick's POV" class="footer-logo" />
+          <p class="footer-tagline">Immersive first-person experiences</p>
+          <p class="footer-contact"><a href="mailto:contact@nickspov.com">contact@nickspov.com</a></p>
+          <div class="footer-social">
+            <a href="https://twitter.com/nickspov" target="_blank" rel="noopener" aria-label="Twitter">
+              <img src="/social/twitter.svg" alt="Twitter" />
+            </a>
+            <a href="https://nickspov.manyvids.com" target="_blank" rel="noopener" aria-label="ManyVids">
+              <img src="/social/manyvids.svg" alt="ManyVids" />
+            </a>
+          </div>
+        </div>
+        <p class="footer-copy">&copy; 2026 Nick's POV. All rights reserved.</p>
+      </div>
+    </footer>
+    <script is:inline>
+      const toggle = document.querySelector('.nav-toggle');
+      const links = document.querySelector('.nav-links');
+      toggle.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        toggle.classList.toggle('active', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+    </script>
+    <Dynamics />
+  </body>
+</html>
+
+<style>
+  .nav {
+    background: rgba(17, 17, 17, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    background: #fff;
+    border-radius: var(--radius-md);
+    padding: 6px 14px;
+  }
+
+  .logo-img {
+    height: 34px;
+    width: auto;
+    display: block;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-links .btn {
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    animation: cta-pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes cta-pulse {
+    0%, 100% {
+      box-shadow: 0 0 16px rgba(233, 30, 99, 0.35);
+    }
+    50% {
+      box-shadow: 0 0 28px rgba(233, 30, 99, 0.6);
+    }
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color var(--transition);
+  }
+
+  .nav-links a:hover {
+    color: var(--text-primary);
+  }
+
+  main {
+    min-height: calc(100vh - 140px);
+  }
+
+  .footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    padding: 48px 0 32px;
+  }
+
+  .footer-content {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .footer-logo {
+    height: 44px;
+    width: auto;
+    border-radius: var(--radius-md);
+    margin-bottom: 12px;
+  }
+
+  .footer-tagline {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .footer-contact {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    transition: all var(--transition);
+  }
+
+  .footer-social a:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .footer-social img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .footer-copy {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-links .btn {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+    .nav-links {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: rgba(17, 17, 17, 0.98);
+      backdrop-filter: blur(20px);
+      padding: 24px;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+      transform: translateY(-120%);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-links a {
+      font-size: 1.1rem;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .logo {
+      padding: 4px 10px;
+    }
+
+    .logo-img {
+      height: 28px;
+    }
+  }
+</style>

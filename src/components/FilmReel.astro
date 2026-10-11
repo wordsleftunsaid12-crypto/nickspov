@@ -1,0 +1,128 @@
+---
+const { ambient = false } = Astro.props;
+---
+
+<div class={ambient ? 'reel ambient' : 'reel'} aria-hidden="true">
+  <div class="reel-holes"></div>
+  <div class="reel-viewport">
+    <div class="reel-track">
+      <div class="reel-group">
+        <div class="frame"><img src="/reel/r1.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r2.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r3.jpg" alt="" loading="lazy" /></div>
+        <div class="frame accent"><img src="/reel/r4.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r5.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r6.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r7.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r8.jpg" alt="" loading="lazy" /></div>
+      </div>
+      <div class="reel-group">
+        <div class="frame"><img src="/reel/r1.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r2.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r3.jpg" alt="" loading="lazy" /></div>
+        <div class="frame accent"><img src="/reel/r4.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r5.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r6.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r7.jpg" alt="" loading="lazy" /></div>
+        <div class="frame"><img src="/reel/r8.jpg" alt="" loading="lazy" /></div>
+      </div>
+    </div>
+  </div>
+  <div class="reel-holes"></div>
+</div>
+
+<style>
+  .reel {
+    background: #000;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    overflow: hidden;
+  }
+
+  .reel-holes {
+    height: 10px;
+    background-image: repeating-linear-gradient(90deg, #3a3a3a 0 14px, transparent 14px 30px);
+  }
+
+  .reel-viewport {
+    overflow: hidden;
+    padding: 14px 0;
+  }
+
+  .reel-track {
+    display: flex;
+    width: max-content;
+    animation: reel-scroll 45s linear infinite;
+  }
+
+  .reel:hover .reel-track {
+    animation-play-state: paused;
+  }
+
+  .reel-group {
+    display: flex;
+    gap: 14px;
+    padding-right: 14px;
+  }
+
+  @keyframes reel-scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .frame {
+    width: 200px;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+    background: #0c0c0c;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(1) brightness(0.72) contrast(1.05);
+  }
+
+  .frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(233, 30, 99, 0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .frame.accent {
+    border-color: var(--accent);
+  }
+
+  .reel.ambient {
+    background: transparent;
+    border: none;
+    padding: 0;
+    opacity: 0.55;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+  }
+
+  .reel.ambient .reel-track {
+    animation-duration: 70s;
+  }
+
+  .reel.ambient .frame {
+    width: 280px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reel-track {
+      animation: none;
+    }
+  }
+</style>
